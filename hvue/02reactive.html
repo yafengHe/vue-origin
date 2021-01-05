@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    /**
+ * 将传入的obj，动态的设置一个key，它的值是val
+ * @param {Object} obj 要接收的对象
+ * @param {String} key 要设置的键
+ * @param {*} val 要设置的值
+ */
+function defineReactive(obj, key, val) {
+  // - 要拦截的对象obj
+  // - 要设置的属性名称
+  // - descriptor属性描述器，是一个对象，里面有set和get方法
+  Object.defineProperty(obj, key, {
+    get() {
+      // 返回的是最新的值
+      return val;
+    },
+    set(v) {
+      // 如果老的值与新传进来的值不相等 设置为最新的值。这样get里面拿到的就是最新的值
+      if (val !== v) {
+        val = v;
+        // 每次设置最新的值之后 都调用更新函数渲染视图
+        update();
+      }
+    },
+  });
+}
+
+function update() {
+  app.innerText = obj.name
+}
+
+const obj = {};
+defineReactive(obj, 'name', 'henry');
+
+// 再次设置obj里面的name属性的值，每隔一秒更新一次。
+setInterval(() => {
+  obj.name = new Date().toLocaleTimeString()
+}, 1000);
+  </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex from './hvuex';
 
 Vue.use(Vuex);
 
@@ -18,6 +18,12 @@ export default new Vuex.Store({
       setTimeout(() => {
         commit('add');
       }, 1000);
+    },
+  },
+  getters: {
+    doubleCounter: (state) => {
+      console.log(state, 'state ---');
+      return state.count * 2;
     },
   },
   modules: {

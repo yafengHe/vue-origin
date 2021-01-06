@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{counter}}</p>
+    <p h-text="counter" @click="onclick"></p>
+    <p h-html="desc"></p>
+  </div>
+
+  <script src="./hvue.js"></script>
+  <script>
+    // 1. new Vue() 首先初始化
+    //        用Observer劫持监听所有属性来对data执行响应式变化处理。
+    //        同时用Compile对模板变执行编译，找到其中动态绑定的数据，从data中获取并初始化视图
+    // 2. 定义一个更新函数Updater和Watcher，数据变化时Watcher会调用更新函数
+    // 3. data中的某个key可能在同一视图中出现多次，所以每个key都需要Dep来管理多个Watcher
+    // 4. data数据变化，先找到对应的Dep，通过Watcher执行更新函数。
+    const app = new HVue({
+      el: '#app',
+      data: {
+        counter: 1,
+        desc: '<span style="color: red">村长真棒</span>'
+      },
+    })
+
+    setInterval(() => {
+      app.counter++
+    }, 1000);
+  </script>
+</body>
+</html>

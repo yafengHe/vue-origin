@@ -10,6 +10,8 @@
     <p>{{counter}}</p>
     <p h-text="counter" @click="onclick"></p>
     <p h-html="desc"></p>
+    <input type="text" h-model="inputVal" @input="input">
+    <p>{{inputVal}}</p>
   </div>
 
   <script src="./hvue.js"></script>
@@ -24,13 +26,22 @@
       el: '#app',
       data: {
         counter: 1,
+        inputVal: '',
         desc: '<span style="color: red">村长真棒</span>'
       },
+      methods: {
+        onclick() {
+          this.counter++
+        },
+        input(e) {
+          this.inputVal = e.target.value
+        }
+      }
     })
 
-    setInterval(() => {
-      app.counter++
-    }, 1000);
+    // setInterval(() => {
+    //   app.counter++
+    // }, 1000);
   </script>
 </body>
 </html>

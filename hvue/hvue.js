@@ -100,9 +100,18 @@ class Compile {
    */
   compileElement(node) {
     // node.attributes是一个类数组对象 需先转换成数组
+<<<<<<< HEAD
     Array.from(node.attributes).forEach((attr) => {
       const attrName = attr.name;
       const exp = attr.value;
+=======
+    Array.from(node.attributes).forEach(attr => {
+      console.log(attr)
+      // 获取属性名称. h-text="count"则可以获取到h-text
+      const attrName = attr.name
+      // 获取属性值 对应的data上的key. h-text="count"则可以获取到count
+      const exp = attr.value
+>>>>>>> ed03aa65a3abdc95cd4e359f903c40ddcb582eb1
 
       // 判断是否是一个指令
       if (this.isDir(attrName)) {

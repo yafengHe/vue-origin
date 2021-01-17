@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <p @click="$store.commit('add')">{{$store.state.count}}</p>
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <!-- <p @click="$store.commit('add')">{{$store.state.count}}</p>
     <p @click="$store.dispatch('add')">{{$store.state.count}}</p>
-    <p>{{$store.getters.doubleCounter}}</p>
+    <p>{{$store.getters.doubleCounter}}</p> -->
   </div>
 </template>
 
